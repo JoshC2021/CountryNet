@@ -1,0 +1,11 @@
+﻿<form method="post">
+    @foreach (Country cy in ViewData["countries"] as IList<Country>)
+    {
+        <input type="radio" name="country" value="@cy.Name" />
+        <label>@cy.Name</label>
+        <br />
+    }
+    <input type="submit" />
+</form>
+
+

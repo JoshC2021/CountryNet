@@ -1,0 +1,16 @@
+﻿@{ bool hasShownCountry = false;
+    var selectedCountry = TempData.Peek("country");
+}
+@foreach (Country cy in ViewData["countries"] as IList<Country>)
+{
+    if (selectedCountry != null && hasShownCountry == false && cy.Name == selectedCountry.ToString())
+    {
+       <p>@cy.Description</p>
+        hasShownCountry = true;
+    }
+}
+
+@if (!hasShownCountry)
+{
+    <p>No country selected</p>
+}

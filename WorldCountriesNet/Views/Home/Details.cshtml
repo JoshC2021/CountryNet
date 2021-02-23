@@ -1,0 +1,40 @@
+﻿@{ bool hasShownCountry = false;
+    var selectedCountry = TempData.Peek("country");
+}
+@foreach (Country cy in ViewData["countries"] as IList<Country>)
+{
+    if (selectedCountry != null && hasShownCountry == false && cy.Name == selectedCountry.ToString())
+    {
+        <h2>Country: @cy.Name</h2>
+        <h2>Language: @cy.OfficialLanguage</h2>
+        <h2>Greetings: @cy.HelloWorld</h2>
+        <h2>Colors: </h2>
+        <ul>
+            @foreach (string color in cy.PrimaryColors)
+            {
+                <li>@color</li>
+            }
+        </ul>
+        <style>
+            #outer
+            {
+                background-color: @cy.PrimaryColors[0].ToLower();
+            }
+            #inner
+            {
+                background-color: @cy.PrimaryColors[1].ToLower();
+            }
+            #foot
+            {
+                background-color: @cy.PrimaryColors[2].ToLower();
+            }
+        </style>
+
+        hasShownCountry = true;
+    }
+}
+
+@if (!hasShownCountry)
+{
+    <p>No country selected</p>
+}
